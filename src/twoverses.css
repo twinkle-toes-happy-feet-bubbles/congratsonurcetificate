@@ -1,0 +1,7 @@
+.twoverses {
+    list-style-type: none;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: royalblue;
+}

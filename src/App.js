@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import Header from './header.jsx';
+import Footer from './footer.jsx';
+import Twoverses from './twoverses.jsx'
+import InputForm from './inputForm.jsx';
+import WriteUp from './writeup.jsx';
+import imgUrl from './certificate.jpg'
 
 function App() {
+  const params = new URLSearchParams(window.location.search);
+  const initialName = params.get('name') || "Name";
+  const initialCourse = params.get('course') || "Course";
+
+  const [name, setName] = useState(initialName);
+  const [course, setCourse] = useState(initialCourse);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set('name', name);
+    params.set('course', course);
+    window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+  }, [name, course]);
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    params.set('name', name);
+    params.set('course', course);
+    const url = `${window.location.origin}${window.location.pathname}?${params}`;
+    navigator.clipboard.writeText(url);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <InputForm setName={setName} setCourse={setCourse}/>
+      <WriteUp name={name} course={course}/>
+      <button onClick={handleShare}>Share</button>
+      <img src={imgUrl} alt="certificate" width="auto" height="auto" style={{ display: 'block', margin: '0 auto', maxWidth: '100%' }} />
+      <Header />
+      <Twoverses/>
+      <Footer/>
+    </>
   );
 }
 

@@ -33,7 +33,7 @@ function App() {
     <>
       <InputForm setName={setName} setCourse={setCourse}/>
       <WriteUp name={name} course={course}/>
-      <button onClick={handleShare}>Share</button>
+      <button onClick={handleShare}>Copy link</button>
       <img src={imgUrl} alt="certificate" width="auto" height="auto" style={{ display: 'block', margin: '0 auto', maxWidth: '100%' }} />
       <Header />
       <Twoverses/>

@@ -5,8 +5,9 @@ function WriteUp({name, course}){
         <>
         <div className="writeup">
             <p>
-                hello {name}! <br />
-                Congratulations on completing the course on {course}. <br />
+                Hello {name}! <br />
+                Congratulations on completing the course on {course} and proving you are an idiot. <br />
+                Evan modda chekaniki ippudu aa postlu <br/>
             </p>
         </div>
         </>

@@ -27,14 +27,24 @@ function App() {
     params.set('course', course);
     const url = `${window.location.origin}${window.location.pathname}?${params}`;
     navigator.clipboard.writeText(url);
+    alert('Link copied to clipboard')
   };
 
   return (
     <>
+      
+      <div className="relative">
+        <img src={imgUrl} alt="certificate" className="w-full" />
+        <div className="absolute inset-0 flex items-center justify-center px-9">
+          <WriteUp name={name} course={course} className="text-center"/>
+        </div>
+      </div>
+      
+      <div className='relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32'>
       <InputForm setName={setName} setCourse={setCourse}/>
-      <WriteUp name={name} course={course}/>
-      <button onClick={handleShare}>Copy link</button>
-      <img src={imgUrl} alt="certificate" width="auto" height="auto" style={{ display: 'block', margin: '0 auto', maxWidth: '100%' }} />
+      <button onClick={handleShare} className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Copy link</button>
+      
+      </div>
       <Header />
       <Twoverses/>
       <Footer/>
